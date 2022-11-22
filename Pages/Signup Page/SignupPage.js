@@ -12,11 +12,11 @@ import {
   Link,
   Icon,
   Pressable,
-  Alert,
 } from 'native-base';
 import React, {useState} from 'react';
 import {MaterialIcons} from '@native-base/icons';
 import auth from '@react-native-firebase/auth';
+import {Alert} from 'react-native';
 
 function SignupPage() {
   const [fname, setFname] = useState('');
@@ -33,34 +33,58 @@ function SignupPage() {
     if (password == passwordagain) {
       await auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(
+        .then(async () => {
           auth().currentUser.updateProfile({
             displayName: uname,
             phoneNumber: pnumber,
-          }),
-        )
+          });
+        })
         .then(() => {
           console.log('User account created & signed in!');
           Alert.alert('User account created & signed in!');
+          clearAll();
         })
         .catch(error => {
           if (error.code === 'auth/email-already-in-use') {
             console.log('That email address is already in use!');
             Alert.alert('That email address is already in use!');
+            clearEM();
           }
 
           if (error.code === 'auth/invalid-email') {
             console.log('That email address is invalid!');
             Alert.alert('That email address is invalid!');
+            clearEM();
           }
 
           console.error(error);
+          clearAll();
         });
     } else {
       console.error('Passwords do not match');
       Alert.alert('Passwords do not match');
+      clearPW();
     }
   };
+
+  function clearAll() {
+    setFname('');
+    setLname('');
+    setUname('');
+    setPnum('');
+    setEmail('');
+    setPassword('');
+    setPasswordagain('');
+  }
+
+  function clearEM() {
+    setEmail('');
+  }
+
+  function clearPW() {
+    setPassword('');
+    setPasswordagain('');
+  }
 
   return (
     <NativeBaseProvider>
@@ -88,7 +112,7 @@ function SignupPage() {
               variant="outline"
               placeholder="First Name"
               justifyContent="flex-start"
-              w="50%"
+              w="49%"
               value={fname}
               onChangeText={txt => {
                 setFname(txt);
@@ -99,7 +123,7 @@ function SignupPage() {
               variant="outline"
               placeholder="Last Name"
               justifyContent="flex-end"
-              w="50%"
+              w="49%"
               value={lname}
               onChangeText={txt => {
                 setLname(txt);
@@ -112,7 +136,7 @@ function SignupPage() {
               variant="outline"
               placeholder="Username"
               justifyContent="flex-start"
-              w="50%"
+              w="49%"
               value={uname}
               onChangeText={txt => {
                 setUname(txt);
@@ -123,7 +147,7 @@ function SignupPage() {
               variant="outline"
               placeholder="Phone Number"
               justifyContent="flex-end"
-              w="50%"
+              w="49%"
               value={pnumber}
               onChangeText={txt => {
                 setPnum(txt);
@@ -236,7 +260,7 @@ function SignupPage() {
                   color: 'cyan.400',
                 },
               }}>
-              Click here
+              Login
             </Link>
           </HStack>
         </Stack>
