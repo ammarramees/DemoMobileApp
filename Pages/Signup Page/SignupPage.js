@@ -16,7 +16,7 @@ import {
 import React, {useState} from 'react';
 import {MaterialIcons} from '@native-base/icons';
 import auth from '@react-native-firebase/auth';
-import {Alert} from 'react-native';
+import {Alert, View, ImageBackground} from 'react-native';
 
 function SignupPage() {
   const [fname, setFname] = useState('');
@@ -87,185 +87,226 @@ function SignupPage() {
   }
 
   return (
-    <NativeBaseProvider>
-      <Center>
-        <Container>
-          <Heading
-            size="md"
-            fontSize={30}
-            mt="15%"
-            italic
-            color="#192a56"
-            mx="auto">
-            Hello, Welcome to{' '}
-          </Heading>
-          <Heading mt="0.5%" size="xl">
-            <Text color="emerald.600" alignContent="center" fontSize={40}>
-              DemoMobileApp
-            </Text>
-          </Heading>
-        </Container>
-        <Stack space={5} w="85%" maxW="400px" mx="auto" mt="10%">
-          <HStack space={2} justifyContent="space-between">
-            <Input
-              size="lg"
-              variant="outline"
-              placeholder="First Name"
-              justifyContent="flex-start"
-              w="49%"
-              value={fname}
-              onChangeText={txt => {
-                setFname(txt);
-              }}
-            />
-            <Input
-              size="lg"
-              variant="outline"
-              placeholder="Last Name"
-              justifyContent="flex-end"
-              w="49%"
-              value={lname}
-              onChangeText={txt => {
-                setLname(txt);
-              }}
-            />
-          </HStack>
-          <HStack space={2} justifyContent="space-between">
-            <Input
-              size="lg"
-              variant="outline"
-              placeholder="Username"
-              justifyContent="flex-start"
-              w="49%"
-              value={uname}
-              onChangeText={txt => {
-                setUname(txt);
-              }}
-            />
-            <Input
-              size="lg"
-              variant="outline"
-              placeholder="Phone Number"
-              justifyContent="flex-end"
-              w="49%"
-              value={pnumber}
-              onChangeText={txt => {
-                setPnum(txt);
-              }}
-            />
-          </HStack>
-          <Input
-            size="lg"
-            variant="outline"
-            placeholder="Email Address"
-            value={email}
-            onChangeText={txt => {
-              setEmail(txt);
-            }}
-          />
-          <Input
-            type={show ? 'text' : 'password'}
-            InputRightElement={
-              <Pressable onPress={() => setShow(!show)}>
-                <Icon
-                  as={
-                    <MaterialIcons
-                      name={show ? 'visibility' : 'visibility-off'}
-                    />
-                  }
-                  size={5}
-                  mr="2"
-                  color="muted.400"
+    <View>
+      <ImageBackground
+        source={require('../Img/gradient3.jpeg')}
+        resizeMode="cover"
+        style={{
+          display: 'flex',
+          height: '100%',
+          opacity: 1,
+        }}>
+        <NativeBaseProvider>
+          <Center>
+            <Container>
+              <Heading
+                size="md"
+                fontSize={30}
+                mt="15%"
+                italic
+                color="#192a56"
+                mx="auto"
+                shadow="9">
+                Hello, Welcome to{' '}
+              </Heading>
+              <Heading mt="0.5%" size="xl">
+                <Text
+                  color="emerald.600"
+                  alignContent="center"
+                  fontSize={40}
+                  shadow="9">
+                  DemoMobileApp
+                </Text>
+              </Heading>
+            </Container>
+            <Stack space={5} w="85%" maxW="400px" mx="auto" mt="15%">
+              <HStack space={2} justifyContent="space-between">
+                <Input
+                  size="lg"
+                  variant="filled"
+                  placeholder="First Name"
+                  justifyContent="flex-start"
+                  w="49%"
+                  borderRadius="10"
+                  borderColor="emerald.200"
+                  value={fname}
+                  onChangeText={txt => {
+                    setFname(txt);
+                  }}
                 />
-              </Pressable>
-            }
+                <Input
+                  size="lg"
+                  variant="filled"
+                  placeholder="Last Name"
+                  justifyContent="flex-end"
+                  w="49%"
+                  borderRadius="10"
+                  borderColor="emerald.200"
+                  value={lname}
+                  onChangeText={txt => {
+                    setLname(txt);
+                  }}
+                />
+              </HStack>
+              <HStack space={2} justifyContent="space-between">
+                <Input
+                  size="lg"
+                  variant="filled"
+                  placeholder="Username"
+                  justifyContent="flex-start"
+                  w="49%"
+                  borderRadius="10"
+                  borderColor="emerald.200"
+                  value={uname}
+                  onChangeText={txt => {
+                    setUname(txt);
+                  }}
+                />
+                <Input
+                  size="lg"
+                  variant="filled"
+                  placeholder="Phone Number"
+                  justifyContent="flex-end"
+                  w="49%"
+                  borderRadius="10"
+                  borderColor="emerald.200"
+                  value={pnumber}
+                  onChangeText={txt => {
+                    setPnum(txt);
+                  }}
+                />
+              </HStack>
+              <Input
+                size="lg"
+                variant="filled"
+                placeholder="Email Address"
+                borderRadius="10"
+                borderColor="emerald.200"
+                value={email}
+                onChangeText={txt => {
+                  setEmail(txt);
+                }}
+              />
+              <Input
+                type={show ? 'text' : 'password'}
+                InputRightElement={
+                  <Pressable onPress={() => setShow(!show)}>
+                    <Icon
+                      as={
+                        <MaterialIcons
+                          name={show ? 'visibility' : 'visibility-off'}
+                        />
+                      }
+                      size={5}
+                      mr="2"
+                      color="muted.400"
+                    />
+                  </Pressable>
+                }
+                size="lg"
+                variant="filled"
+                placeholder="Password"
+                borderRadius="10"
+                borderColor="emerald.200"
+                value={password}
+                onChangeText={txt => {
+                  setPassword(txt);
+                }}
+              />
+              {/* <Input
             size="lg"
-            variant="outline"
-            placeholder="Password"
-            value={password}
-            onChangeText={txt => {
-              setPassword(txt);
-            }}
-          />
-          {/* <Input
-            size="lg"
-            variant="outline"
+            variant="filled"
             placeholder="Password"
             value={password}
             onChangeText={txt => {
               setPassword(txt);
             }}
           /> */}
-          <Input
-            type={show ? 'text' : 'password'}
-            InputRightElement={
-              <Pressable onPress={() => setShow(!show)}>
-                <Icon
-                  as={
-                    <MaterialIcons
-                      name={show ? 'visibility' : 'visibility-off'}
+              <Input
+                type={show ? 'text' : 'password'}
+                InputRightElement={
+                  <Pressable onPress={() => setShow(!show)}>
+                    <Icon
+                      as={
+                        <MaterialIcons
+                          name={show ? 'visibility' : 'visibility-off'}
+                        />
+                      }
+                      size={5}
+                      mr="2"
+                      color="muted.400"
                     />
-                  }
-                  size={5}
-                  mr="2"
-                  color="muted.400"
-                />
-              </Pressable>
-            }
+                  </Pressable>
+                }
+                size="lg"
+                variant="filled"
+                placeholder=" Confirm Password"
+                borderRadius="10"
+                borderColor="emerald.200"
+                value={passwordagain}
+                onChangeText={txt => {
+                  setPasswordagain(txt);
+                }}
+              />
+              {/* <Input
             size="lg"
-            variant="outline"
-            placeholder=" Confirm Password"
-            value={passwordagain}
-            onChangeText={txt => {
-              setPasswordagain(txt);
-            }}
-          />
-          {/* <Input
-            size="lg"
-            variant="outline"
+            variant="filled"
             placeholder="Confirm Password"
             value={passwordagain}
             onChangeText={txt => {
               setPasswordagain(txt);
             }}
           /> */}
-          <Checkbox size="sm" value="one" justifyContent="flex-start" ml="2.5">
-            Agree to terms and conditions
-          </Checkbox>
-          <Button
-            variant="solid"
-            size="lg"
-            colorScheme="amber"
-            mt="5%"
-            onPress={register}>
-            Create Account
-          </Button>
-          <HStack space={3} justifyContent="center">
-            <Text fontSize="md">Already have an account?</Text>
-            <Link
-              _text={{
-                fontSize: 'md',
-                _light: {
-                  color: 'cyan.500',
-                },
-                color: 'cyan.300',
-              }}
-              href="#"
-              isUnderlined
-              _hover={{
-                _text: {
-                  _light: {
-                    color: 'cyan.600',
-                  },
-                  color: 'cyan.400',
-                },
-              }}>
-              Login
-            </Link>
-          </HStack>
-        </Stack>
-      </Center>
-    </NativeBaseProvider>
+              <Checkbox
+                size="sm"
+                value="one"
+                justifyContent="flex-start"
+                ml="2.5"
+                shadow="9"
+                mt="0%">
+                Agree to terms and conditions
+              </Checkbox>
+              <Button
+                variant="solid"
+                size="lg"
+                colorScheme="emerald"
+                mt="15%"
+                borderRadius="10"
+                shadow="9"
+                onPress={register}>
+                Create Account
+              </Button>
+              <HStack space={3} justifyContent="center" mt="-2%">
+                <Text fontSize="md" shadow="9">
+                  Already have an account?
+                </Text>
+                <Link
+                  shadow="9"
+                  _text={{
+                    fontSize: 'md',
+                    _light: {
+                      color: 'cyan.500',
+                    },
+                    color: 'cyan.300',
+                  }}
+                  href="#"
+                  isUnderlined
+                  _hover={{
+                    _text: {
+                      _light: {
+                        color: 'cyan.600',
+                      },
+                      color: 'cyan.400',
+                    },
+                  }}>
+                  Login
+                </Link>
+              </HStack>
+            </Stack>
+          </Center>
+        </NativeBaseProvider>
+      </ImageBackground>
+    </View>
   );
 }
 

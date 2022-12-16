@@ -1,13 +1,15 @@
-import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
-import HomePageDemo from './Pages/Home Page/HomePageDemo';
-import HomePage from './Pages/Home Page/HomePage';
+import Sample from './Pages/Home Page/Sample';
 import LoginPage from './Pages/Login Page/LoginPage';
 import SignupPage from './Pages/Signup Page/SignupPage';
-import Sample from './Pages/Home Page/Sample';
+import DataAdd from './Pages/Data Add/DataAdd';
+import DataPage from './Pages/Data Page/DataPage';
+import ImgUploadExample from './Pages/Upload Function Example/ImgUploadExample';
 
-export default function App() {
+function App() {
   return (
-      <LoginPage />
+        <ImgUploadExample />
   );
 }
+
+export default App;
